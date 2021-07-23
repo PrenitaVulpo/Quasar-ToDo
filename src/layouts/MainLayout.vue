@@ -13,9 +13,8 @@
 			</q-toolbar>
 			<div class="q-px-lg q-pt-xl q-mb-md">
 				<span class="text-h3">ToDo</span>
-				<span class="text-subtitle1">{{
-					Intl.DateTimeFormat('pt-br').format(new Date())
-				}}</span>
+				<br />
+				<span class="text-subtitle1">{{ formatedDate }}</span>
 			</div>
 		</q-header>
 
@@ -41,6 +40,7 @@
 
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue';
+import { date } from 'quasar';
 
 const linksList = [
 	{
@@ -106,6 +106,12 @@ export default defineComponent({
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
 		};
+	},
+	computed: {
+		formatedDate() {
+			let todayDate = new Date();
+			return date.formatDate(todayDate, 'HH:mm:ss DD-MM-YYYY');
+		},
 	},
 });
 </script>

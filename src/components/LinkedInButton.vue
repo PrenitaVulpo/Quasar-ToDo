@@ -1,14 +1,14 @@
 <template>
 	<a
-		href="https://github.com/PrenitaVulpo"
+		href="https://www.linkedin.com/in/guilherme-damasceno-85480211b/"
 		target="_blank"
 		rel="noopener noreferrer"
 		class="button-main q-py-xs q-px-sm"
 	>
-		<q-avatar class="q-mr-md">
-			<img src="../assets/GitHub-Mark-Light-120px-plus.png" alt="Github" />
+		<q-avatar square color="white" class="q-mr-md">
+			<img src="../assets/LI-In-Bug.png" alt="Linkedin" />
 		</q-avatar>
-		<h4 class="no-margin text-weight-medium">/PrenitaVulpo</h4>
+		<h4 class="no-margin text-weight-medium">/guilherme-damasceno-85480211b</h4>
 	</a>
 </template>
 
@@ -30,8 +30,8 @@ export default defineComponent({
   text-decoration: none
   color: #fff
   border-radius: 10px
-  background-color: #0D1117
+  background-color: #0177B7
   transition: 0.2s
 .button-main:hover
-  background-color: #43413F
+  background-color: #1DA0C9
 </style>

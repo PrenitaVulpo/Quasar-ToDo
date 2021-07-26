@@ -7,17 +7,19 @@
 		</p>
 
 		<p>Where you can find me:</p>
-		<GithubButton />
+		<GithubButton class="q-mb-md" />
+		<LinkedInButton />
 	</q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import GithubButton from '../components/GithubButton.vue';
+import LinkedInButton from '../components/LinkedInButton.vue';
 
 export default defineComponent({
 	name: 'PageIndex',
-	components: { GithubButton },
+	components: { GithubButton, LinkedInButton },
 	setup() {
 		return {};
 	},

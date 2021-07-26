@@ -32,12 +32,11 @@
 				"
 			>
 				<q-list
-					padding
 					v-for="(page, index) in linkList"
 					:key="index"
 					class="list no-padding"
 				>
-					<q-item clickable v-ripple>
+					<q-item :to="{ name: page.to }" clickable v-ripple>
 						<q-item-section avatar>
 							<q-icon :name="page.icon" />
 						</q-item-section>
@@ -62,7 +61,9 @@
 		</q-drawer>
 
 		<q-page-container>
-			<router-view />
+			<keep-alive>
+				<router-view />
+			</keep-alive>
 		</q-page-container>
 	</q-layout>
 </template>
@@ -83,14 +84,17 @@ export default defineComponent({
 			{
 				pageName: 'ToDo',
 				icon: 'calendar_today',
+				to: 'Home',
 			},
 			{
 				pageName: 'About',
 				icon: 'help',
+				to: 'About',
 			},
 			{
 				pageName: 'Settings',
 				icon: 'settings',
+				to: 'Settings',
 			},
 		]);
 

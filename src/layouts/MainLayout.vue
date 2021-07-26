@@ -31,37 +31,18 @@
 					border-right: 1px solid #ddd;
 				"
 			>
-				<q-list padding>
+				<q-list
+					padding
+					v-for="(page, index) in linkList"
+					:key="index"
+					class="list no-padding"
+				>
 					<q-item clickable v-ripple>
 						<q-item-section avatar>
-							<q-icon name="inbox" />
+							<q-icon :name="page.icon" />
 						</q-item-section>
 
-						<q-item-section> Inbox </q-item-section>
-					</q-item>
-
-					<q-item active clickable v-ripple>
-						<q-item-section avatar>
-							<q-icon name="star" />
-						</q-item-section>
-
-						<q-item-section> Star </q-item-section>
-					</q-item>
-
-					<q-item clickable v-ripple>
-						<q-item-section avatar>
-							<q-icon name="send" />
-						</q-item-section>
-
-						<q-item-section> Send </q-item-section>
-					</q-item>
-
-					<q-item clickable v-ripple>
-						<q-item-section avatar>
-							<q-icon name="drafts" />
-						</q-item-section>
-
-						<q-item-section> Drafts </q-item-section>
+						<q-item-section> {{ page.pageName }} </q-item-section>
 					</q-item>
 				</q-list>
 			</q-scroll-area>
@@ -89,7 +70,7 @@
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue';
 import { date } from 'quasar';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, reactive } from 'vue';
 
 export default defineComponent({
 	name: 'MainLayout',
@@ -98,12 +79,27 @@ export default defineComponent({
 
 	setup() {
 		const leftDrawerOpen = ref(false);
+		const linkList = reactive([
+			{
+				pageName: 'ToDo',
+				icon: 'calendar_today',
+			},
+			{
+				pageName: 'About',
+				icon: 'help',
+			},
+			{
+				pageName: 'Settings',
+				icon: 'settings',
+			},
+		]);
 
 		return {
 			leftDrawerOpen,
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
+			linkList,
 		};
 	},
 	computed: {
@@ -114,3 +110,7 @@ export default defineComponent({
 	},
 });
 </script>
+<style lang="sass" scoped>
+.list:first-child
+	margin-top: 8px
+</style>

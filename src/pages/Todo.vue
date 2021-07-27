@@ -9,18 +9,30 @@
       -->
 
 				<q-item
-					class="bg-light-green-2"
 					tag="label"
 					v-ripple
-					v-for="task in taskList"
+					v-for="(task, index) in taskList"
 					:key="task.id"
+					:class="{ 'done bg-light-green-2': task.done }"
 				>
 					<q-item-section avatar>
 						<q-checkbox v-model="task.done" :val="!task.done" color="primary" />
 					</q-item-section>
 					<q-item-section>
-						<q-item-label>{{ task.title }}</q-item-label>
+						<q-item-label class="text-weight-medium">{{
+							task.title
+						}}</q-item-label>
 						<q-item-label caption>{{ task.description }}</q-item-label>
+					</q-item-section>
+					<q-item-section v-if="task.done" side>
+						<q-btn
+							@click.stop="removeTask(index)"
+							flat
+							round
+							dense
+							color="primary"
+							icon="dense"
+						/>
 					</q-item-section>
 				</q-item>
 			</q-list>
@@ -59,5 +71,18 @@ export default defineComponent({
 
 		return { taskList };
 	},
+	methods: {
+		removeTask(index: number) {
+			this.taskList.splice(index, 1);
+		},
+	},
 });
 </script>
+
+<style lang="sass" scoped>
+.done
+  .q-item__label
+    text-decoration: line-through
+  .q-item__label
+    text-decoration: line-through
+</style>

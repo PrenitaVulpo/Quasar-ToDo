@@ -31,7 +31,7 @@
 							round
 							dense
 							color="primary"
-							icon="dense"
+							icon="delete"
 						/>
 					</q-item-section>
 				</q-item>

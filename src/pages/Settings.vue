@@ -1,5 +1,5 @@
 <template>
-	<q-page class="column bg-grey-3">
+	<q-page class="column bg-grey-3 q-pa-lg">
 		<h5>Config</h5>
 	</q-page>
 </template>

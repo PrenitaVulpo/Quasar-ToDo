@@ -55,7 +55,7 @@
 					<q-avatar size="56px" class="q-mb-sm">
 						<img src="../assets/user.png" />
 					</q-avatar>
-					<div class="text-weight-bold">Usuário anônimo</div>
+					<div class="text-weight-bold">Anonymous user</div>
 				</div>
 			</q-img>
 		</q-drawer>
@@ -69,7 +69,6 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue';
 import { date } from 'quasar';
 import { defineComponent, ref, reactive } from 'vue';
 

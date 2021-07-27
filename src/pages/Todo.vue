@@ -1,5 +1,5 @@
 <template>
-	<q-page class="row items-center justify-evenly">
+	<q-page class="column bg-grey-3">
 		<h5>Todo</h5>
 	</q-page>
 </template>

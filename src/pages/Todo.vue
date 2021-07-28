@@ -1,5 +1,5 @@
 <template>
-	<q-page class="column bg-grey-3 q-pa-lg">
+	<q-page class="column bg-grey-3 q-pa-lg justify-between">
 		<div class="q-gutter-sm q-pb-sm q-pr-sm bg-grey-1">
 			<q-list separator bordered>
 				<!--
@@ -30,19 +30,31 @@
 							flat
 							round
 							dense
-							color="primary"
+							color="negative"
 							icon="delete"
 						/>
 					</q-item-section>
 				</q-item>
 			</q-list>
 		</div>
+		<footer class="footer row align-end justify-end">
+			<q-btn
+				round
+				dense
+				color="positive"
+				icon="add"
+				size="1.5rem"
+				@click="addTask"
+			/>
+		</footer>
 	</q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import Task from '../TS/Interfaces/Task';
+import { useQuasar } from 'quasar';
+import TaskForm from '../components/TaskForm.vue';
 
 export default defineComponent({
 	name: 'PageIndex',
@@ -69,11 +81,27 @@ export default defineComponent({
 			},
 		]);
 
-		return { taskList };
+		const $q = useQuasar();
+
+		return { taskList, $q };
 	},
 	methods: {
 		removeTask(index: number) {
-			this.taskList.splice(index, 1);
+			this.$q
+				.dialog({
+					title: 'Confirm',
+					message: 'Would you really like to delete this task?',
+					cancel: true,
+					persistent: true,
+				})
+				.onOk(() => {
+					this.taskList.splice(index, 1);
+				});
+		},
+		addTask() {
+			this.$q.dialog({
+				component: TaskForm,
+			});
 		},
 	},
 });
@@ -83,6 +111,6 @@ export default defineComponent({
 .done
   .q-item__label
     text-decoration: line-through
-  .q-item__label
-    text-decoration: line-through
+.footer
+  position: sticky
 </style>

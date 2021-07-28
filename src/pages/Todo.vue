@@ -1,7 +1,7 @@
 <template>
 	<q-page class="column bg-grey-3 q-pa-lg justify-between">
 		<div class="q-gutter-sm q-pb-sm q-pr-sm bg-grey-1">
-			<q-list separator bordered>
+			<q-list separator bordered v-if="taskList.length > 0">
 				<!--
         Rendering a <label> tag (notice tag="label")
         so QCheckboxes will respond to clicks on QItems to
@@ -36,6 +36,7 @@
 					</q-item-section>
 				</q-item>
 			</q-list>
+			<h5 v-else>Você não tem nenhuma tarefa a ser feita!</h5>
 		</div>
 		<footer class="footer row align-end justify-end">
 			<q-btn
@@ -55,31 +56,13 @@ import { defineComponent, ref } from 'vue';
 import Task from '../TS/Interfaces/Task';
 import { useQuasar } from 'quasar';
 import TaskForm from '../components/TaskForm.vue';
+import getTasks from '../composables/getTasks';
 
 export default defineComponent({
 	name: 'PageIndex',
 	components: {},
 	setup() {
-		const taskList = ref<Task[]>([
-			{
-				id: '8f0a5257-28bc-4b65-9c50-491f071d0665',
-				title: 'task1',
-				description: 'task1 description',
-				done: false,
-			},
-			{
-				id: '0fc2fad7-d425-4c63-9c40-e590147b16d6',
-				title: 'task2',
-				description: 'task2 description',
-				done: false,
-			},
-			{
-				id: '69615862-fbf4-4538-a137-30780c9dd094',
-				title: 'task3',
-				description: 'task3 description',
-				done: false,
-			},
-		]);
+		const taskList = ref<Task[]>(getTasks());
 
 		const $q = useQuasar();
 
